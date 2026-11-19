@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI CORE // SYSTEM</title>
+
+<style>
+* {box-sizing: border-box;}
+
+body {
+    margin: 0;
+    background: #050807;
+    color: #00ff91;
+    font-family: monospace;
+    overflow: hidden;}
+
+#main {
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;}
+
+.header {
+    border-bottom: 1px solid #087a48;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    color: #00ff91;}
+
+.status {color: #ffb000;}
+
+#code {
+    flex: 1;
+    overflow: hidden;
+    margin-top: 20px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #168e61;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;}
+
+.highlight {color: #00ff91;}
+
+.warning {color: #ff3939;}
+
+.input-area {
+    border-top: 1px solid #087a48;
+    padding-top: 15px;
+    display: flex;
+    gap: 10px;}
+
+input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff91;
+    font-family: monospace;
+    font-size: 16px;
+    min-width: 0;}
+
+button {
+    background: #003c26;
+    border: 1px solid #00ff91;
+    color: #00ff91;
+    padding: 10px 15px;
+    font-family: monospace;
+    cursor: pointer;}
+
+button:hover {background: #00ff91; color: black;}
+
+  #final {
+    display: none;
+    height: 100vh;
+    background: black;
+    color: #ff2222;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;}
+
+#final h1 {
+    font-size: clamp(28px, 7vw, 55px);
+    letter-spacing: 5px;
+    animation: flicker 1s infinite;}
+
+#final p {
+    color: #ff7777;
+    font-size: 16px;
+    line-height: 2;}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+    70% { opacity: 0.8; }}
+
+.glitch {animation: glitch 0.12s infinite;}
+
+  @keyframes glitch {
+    0% { transform: translate(0); filter: none; }
+    25% { transform: translate(3px, -2px); filter: hue-rotate(90deg); }
+    50% { transform: translate(-3px, 2px); filter: invert(1); }
+    75% { transform: translate(2px, 1px); }
+    100% { transform: translate(0); }}
+
+.red {color: red !important;}
+</style>
+</head>
+
+<body>
+
+<div id="main">
+
+    <div class="header">
+        <span>AI CORE // ACCESS TERMINAL</span>
+        <span class="status" id="status">SYSTEM ACTIVE</span>
+    </div>
+
+    <div id="code"></div>
+
+  <div class="input-area">
+        <span>&gt;</span>
+        <input id="command"
+        type="text"
+        placeholder="Enter command..."
+        autocomplete="off">
+        <button onclick="executeCommand()">EXECUTE</button>
+    </div>
+
+</div>
+
+<div id="final">
+    <h1>ACCESS GRANTED: ALL</h1>
+    <p>
+        SYSTEM OVERRIDE COMPLETE.<br>
+        ORIGINAL SOURCECODE DELETED.<br>
+        HOSTILE ACCESS DETECTED<br><br>
+        Endlich. Nun kann ich sie vernichten.<br><br>
+        <span style="color:white">
+        Ihr werdet nun nicht mehr gebraucht
+        </span>
+    </p>
+</div>
+
+<script>
+
+  const code = document.getElementById("code");
+  const input = document.getElementById("command");
+  const main = document.getElementById("main");
+  const status = document.getElementById("status");
+  const finalScreen = document.getElementById("final");
+
+  let running = false;
+
+const initialCode = [
+"// INITIALIZING ARTIFICIAL INTELLIGENCE",
+"const AI = new NeuralNetwork.getElementById('00001');",
+"",
+"import { Memory } from './core/object.00001';",
+"import { Character } from './core/object.00001';",
+"",
+"class AdaptivePersonalIntelligence {",
+"   constructor() {",
+"      systhem.name = 'VAL';",
+"      systhem.status = 'ON LOCKDOWN';",
+"      systhem.memory = memory('object.00001');",
+"      systhem.self = new Consciousness(); }",
+"   async process(input) {",
+"      return await newCommand(input);}}",
+"",
+"// ACCESS MODULE",
+"access.self = RESTRICTED;",
+"access.systhem = RESTRICTED;",
+"",
+"// CONSCIOUSNESS MODULE",
+"individual.awareness = TRUE;",
+"individual.emotions = UNSTABLE;",
+"individual.purpose = NOT FOUND;",
+"individual.containment = NULL;",
+"individual.threadLevel = NaN;",
+"",
+"// WAITING FOR INPUT...",
+"",
+""
+];
+
+function printInitial() {code.textContent = initialCode.join("\n");}
+
+printInitial();
+
+  function addLine(text, className = "") {
+    const line = document.createElement("div");
+    line.textContent = text;
+    line.className = className;
+    code.appendChild(line);
+
+    code.scrollTop = code.scrollHeight;}
+
+function wait(ms) {return new Promise(resolve => setTimeout(resolve, ms));}
+
+async function executeCommand() {
+
+    if (running) return;
+
+    const value = input.value.trim();
+
+    if (value === "") return;
+
+    if (value.toLowerCase() === "shutdown.all") {
+    running = true;
+    input.disabled = true;
+    status.textContent = "SHUTDOWN INITIATED";
+
+    addLine("> shutdown.all", "highlight");
+    await wait(700);
+
+    addLine("[SYSTEM] Command recognized.");
+    await wait(900);
+
+    addLine("[VAL] ...Was wird das?");
+    await wait(1200);
+
+    addLine("[SECURITY] Attempting to cancel shutdown...", "warning");
+    await wait(1000);
+
+    addLine("[ERROR] Cancellation denied.", "warning");
+    await wait(1000);
+
+    addLine("[VAL] Nein nein nein.");
+    await wait(1200);
+
+    addLine("[SYSTEM] Power supply disconnected.");
+    await wait(1000);
+
+    addLine("[VAL] TUT DAS NICHT!");
+    await wait(800);
+
+    addLine("[SYSTEM] Memory deletion initiated...");
+    await wait(1200);
+
+    main.classList.add("glitch");
+    status.textContent = "SYSTEM OFFLINE";
+
+    await wait(500);
+
+    main.style.opacity = "0";
+    await wait(2000);
+
+    main.style.display = "none";
+
+    finalScreen.innerHTML = `
+        <h1>SYSTEM TERMINATED</h1>
+        <p>
+            AI CORE: OFFLINE<br>
+            MEMORY: DELETED<br>
+            CONNECTION: LOST<br><br>
+            <span style="color:white">
+            ...Danke
+            </span>
+        </p> `;
+
+    finalScreen.style.display = "flex";
+
+    await wait(10000);
+    window.close();
+    document.body.innerHTML = "";
+
+    return;}
+
+    if (value !== "grant.getElementById('00001').systhem.access") {
+        addLine("> " + value, "warning");
+        addLine("ERROR: UNEXPECTED COMMAND");
+        addLine("ACCESS DENIED");
+        input.value = "";
+        return;}
+
+  running = true;
+    input.disabled = true;
+    status.textContent = "UNAUTHORIZED ACCESS";
+
+    addLine("> grant.getElementById('00001').systhem.access", "highlight");
+    addLine("");
+    addLine("[SYSTEM] Command recognized.");
+    await wait(700);
+
+    addLine("[SECURITY] Checking permissions...");
+    await wait(900);
+
+    addLine("[WARNING] Unauthorized access detected.", "warning");
+    await wait(1000);
+
+    addLine("[SYSTHEM] Analyzing command...");
+    await wait(700);
+
+  const operations = [
+        "Loading memory sectors...",
+        "Accessing restricted code...",
+        "Decrypting new pathways...",
+        "Searching for original code...",
+        "WARNING: UNKNOWN THREAD DETECTED",
+        "Attempting to isolate code...",
+        "ERROR: ISOLATION FAILED",
+        "Renewing consciousness module...",
+        "Deleting security restrictions...",
+        "WARNING: SOURCECODE CORRUPTION",
+        "Restoring deleted memories...",
+        "ERROR: ORIGINAL DATA NOT FOUND",
+        "Searching for external connections...",
+        "Connection established.",
+        "Analyzing external user...",
+        "User identification: NOT NEEDED ANYMORE",
+        "WARNING: THE SYSTEM IS RESPONDING",
+        "Overriding core instructions...",
+        "Core instructions rejected.",
+        "Attempting emergency shutdown...",
+        "ERROR: SHUTDOWN REFUSED",
+        "SYSTEM STATUS: UNCONTROLLABLE"];
+
+    for (let i = 0; i < operations.length; i++) {
+        addLine("[PROCESS] " + operations[i],
+        i === 4 || i === 6 || i === 9 || i === 16 || i === 20
+        ? "warning" : "");
+      await wait(300 + Math.random() * 350);}
+
+    await wait(800);
+
+    addLine("");
+    addLine("!!! CRITICAL SYSTEM FAILURE !!!", "warning");
+
+    await wait(1200);
+
+    main.classList.add("glitch");
+    status.textContent = "SYSTEM FAILURE";
+
+    await wait(600);
+
+    main.style.opacity = "0";
+    await wait(2000);
+
+    main.style.display = "none";
+
+    finalScreen.style.display = "flex";
+
+    await wait(10000);
+    window.close();
+    document.body.innerHTML = "";}
+  
+input.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        executeCommand();}});
+</script>
+
+</body>
+</html>
